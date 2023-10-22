@@ -13,6 +13,7 @@ npm run dev
 ## Todo
 
 - add 3 more dice that can be all rolled together
+- replace the numbers on the dice by pips
 - when you click on dice they will not be rolled and stay fixed
 - create score sheet above dice
 
