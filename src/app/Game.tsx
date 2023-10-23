@@ -1,5 +1,6 @@
 import { useState } from "react";
-import Dice from "./Dice";
+import Dice from "./components/Dice";
+import Button from "./components/Button";
 
 function Game() {
   return (
@@ -33,12 +34,7 @@ function RandomDice() {
           <Dice onClick={handleClick} key={i} number={number} />
         ))}
       </div>
-      <button
-        onClick={handleClick}
-        className="bg-primary hover:bg-primary-dark rounded-lg p-2 px-5 text-white transition"
-      >
-        ROLL DICE
-      </button>
+      <Button onClick={handleClick}>ROLL DICE</Button>
     </div>
   );
 }
