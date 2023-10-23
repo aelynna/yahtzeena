@@ -5,29 +5,41 @@ function Game() {
   return (
     <div className="flex space-x-4 bg-white p-8">
       <RandomDice />
-      <RandomDice />
-      <RandomDice />
-      <RandomDice />
-      <RandomDice />
     </div>
   );
 }
 
 function RandomDice() {
   function handleClick() {
-    setNumber(randomIntFromInterval(1, 6));
+    setNumbers([
+      randomIntFromInterval(1, 6),
+      randomIntFromInterval(1, 6),
+      randomIntFromInterval(1, 6),
+      randomIntFromInterval(1, 6),
+      randomIntFromInterval(1, 6),
+    ]);
   }
 
   function randomIntFromInterval(min: number, max: number) {
     return Math.floor(Math.random() * (max - min + 1) + min);
   }
 
-  const [number, setNumber] = useState(0);
+  const [numbers, setNumbers] = useState([0, 0, 0, 0, 0]);
 
   return (
-    <>
-      <Dice onClick={handleClick} number={number} />
-    </>
+    <div>
+      <div className="flex space-x-4">
+        {numbers.map((number, i) => (
+          <Dice onClick={handleClick} key={i} number={number} />
+        ))}
+      </div>
+      <button
+        onClick={handleClick}
+        className="h-6 w-20 rounded-lg bg-black text-white"
+      >
+        roll dice
+      </button>
+    </div>
   );
 }
 

@@ -2,62 +2,27 @@ export default function Dice(props: { number: number; onClick: () => void }) {
   let pips;
   switch (props.number) {
     case 1: {
-      pips = <div className="h-2 w-2 rounded-full bg-white" />;
+      pips = <Pips pip5 />;
       break;
     }
     case 2: {
-      pips = (
-        <div className="grid grid-cols-3 grid-rows-3 gap-1.5">
-          <div className="col-start-3 row-start-1 h-2 w-2 rounded-full bg-white" />
-          <div className="row-start-3 h-2 w-2 rounded-full bg-white" />
-        </div>
-      );
+      pips = <Pips pip3 pip7 />;
       break;
     }
     case 3: {
-      pips = (
-        <div className="grid grid-cols-3 gap-1.5">
-          <div className="col-start-3 row-start-1 h-2 w-2 rounded-full bg-white" />
-          <div className="col-start-2 row-start-2 h-2 w-2 rounded-full bg-white" />
-          <div className="col-start-1 row-start-3 h-2 w-2 rounded-full bg-white" />
-        </div>
-      );
+      pips = <Pips pip3 pip5 pip7 />;
       break;
     }
     case 4: {
-      pips = (
-        <div className="grid grid-cols-3 grid-rows-3 gap-1.5">
-          <div className="col-start-1 row-start-1 h-2 w-2 rounded-full bg-white" />
-          <div className="col-start-3 row-start-1 h-2 w-2 rounded-full bg-white" />
-          <div className="col-start-1 row-start-3 h-2 w-2 rounded-full bg-white" />
-          <div className="col-start-3 row-start-3 h-2 w-2 rounded-full bg-white" />
-        </div>
-      );
+      pips = <Pips pip1 pip3 pip7 pip9 />;
       break;
     }
     case 5: {
-      pips = (
-        <div className="grid grid-cols-3 grid-rows-3 gap-1.5">
-          <div className="col-start-1 row-start-1 h-2 w-2 rounded-full bg-white" />
-          <div className="col-start-3 row-start-1 h-2 w-2 rounded-full bg-white" />
-          <div className="col-start-2 row-start-2 h-2 w-2 rounded-full bg-white" />
-          <div className="col-start-1 row-start-3 h-2 w-2 rounded-full bg-white" />
-          <div className="col-start-3 row-start-3 h-2 w-2 rounded-full bg-white" />
-        </div>
-      );
+      pips = <Pips pip1 pip3 pip5 pip7 pip9 />;
       break;
     }
     case 6: {
-      pips = (
-        <div className="grid grid-cols-3 grid-rows-3 gap-1.5">
-          <div className="col-start-1 row-start-1 h-2 w-2 rounded-full bg-white" />
-          <div className="col-start-3 row-start-1 h-2 w-2 rounded-full bg-white" />
-          <div className="col-start-1 row-start-2 h-2 w-2 rounded-full bg-white" />
-          <div className="col-start-3 row-start-2 h-2 w-2 rounded-full bg-white" />
-          <div className="col-start-1 row-start-3 h-2 w-2 rounded-full bg-white" />
-          <div className="col-start-3 row-start-3 h-2 w-2 rounded-full bg-white" />
-        </div>
-      );
+      pips = <Pips pip1 pip3 pip4 pip6 pip7 pip9 />;
       break;
     }
   }
@@ -69,4 +34,34 @@ export default function Dice(props: { number: number; onClick: () => void }) {
       {pips}
     </button>
   );
+}
+
+function Pips(props: {
+  pip1?: boolean;
+  pip2?: boolean;
+  pip3?: boolean;
+  pip4?: boolean;
+  pip5?: boolean;
+  pip6?: boolean;
+  pip7?: boolean;
+  pip8?: boolean;
+  pip9?: boolean;
+}) {
+  return (
+    <div className="grid grid-cols-3 grid-rows-3 gap-1.5">
+      {props.pip1 && <Pip className="col-start-1 row-start-1" />}
+      {props.pip2 && <Pip className="col-start-2 row-start-1" />}
+      {props.pip3 && <Pip className="col-start-3 row-start-1" />}
+      {props.pip4 && <Pip className="col-start-1 row-start-2" />}
+      {props.pip5 && <Pip className="col-start-2 row-start-2" />}
+      {props.pip6 && <Pip className="col-start-3 row-start-2" />}
+      {props.pip7 && <Pip className="col-start-1 row-start-3" />}
+      {props.pip8 && <Pip className="col-start-2 row-start-3" />}
+      {props.pip9 && <Pip className="col-start-3 row-start-3" />}
+    </div>
+  );
+}
+
+function Pip(props: { className: string }) {
+  return <div className={"h-2 w-2 rounded-full bg-white " + props.className} />;
 }
