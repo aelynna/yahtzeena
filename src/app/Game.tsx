@@ -3,7 +3,7 @@ import Dice from "./Dice";
 
 function Game() {
   return (
-    <div className="flex space-x-4 bg-white p-8">
+    <div className="bg-backround flex h-full min-h-screen items-center justify-center space-x-4 p-8">
       <RandomDice />
     </div>
   );
@@ -27,7 +27,7 @@ function RandomDice() {
   const [numbers, setNumbers] = useState([0, 0, 0, 0, 0]);
 
   return (
-    <div>
+    <div className="flex flex-col space-y-4">
       <div className="flex space-x-4">
         {numbers.map((number, i) => (
           <Dice onClick={handleClick} key={i} number={number} />
@@ -35,9 +35,9 @@ function RandomDice() {
       </div>
       <button
         onClick={handleClick}
-        className="h-6 w-20 rounded-lg bg-black text-white"
+        className="bg-primary hover:bg-primary-dark rounded-lg p-2 px-5 text-white transition"
       >
-        roll dice
+        ROLL DICE
       </button>
     </div>
   );
