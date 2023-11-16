@@ -1,4 +1,10 @@
-export default function Dice(props: { number: number; onClick: () => void }) {
+import { createContext, useContext } from "react";
+
+export default function Dice(props: {
+  number: number;
+  onClick: () => void;
+  locked: boolean;
+}) {
   let pips;
   switch (props.number) {
     case 1: {
@@ -26,12 +32,17 @@ export default function Dice(props: { number: number; onClick: () => void }) {
       break;
     }
   }
+
+  const colour = props.locked
+    ? "bg-purple-950 hover:bg-purple-900"
+    : "bg-purple-900 hover:bg-purple-800";
+
   return (
     <button
       onClick={props.onClick}
-      className="flex h-12 w-12 items-center justify-center rounded-md bg-black text-white hover:bg-gray-800"
+      className={`flex h-12 w-12 items-center justify-center rounded-md text-white ${colour}`}
     >
-      {pips}
+      <pipContext.Provider value={props.locked}>{pips}</pipContext.Provider>
     </button>
   );
 }
@@ -63,5 +74,12 @@ function Pips(props: {
 }
 
 function Pip(props: { className: string }) {
-  return <div className={"h-2 w-2 rounded-full bg-white " + props.className} />;
+  const locked = useContext(pipContext);
+  const colour = locked ? "bg-gray-500" : "bg-white";
+
+  return (
+    <div className={`h-2 w-2 rounded-full ${colour} ` + props.className} />
+  );
 }
+
+const pipContext = createContext<boolean>(false);
